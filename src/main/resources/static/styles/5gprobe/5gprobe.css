@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+.login .visual .logo_img{background-image:url("../../images/5gprobe/img_login.png");}
+.gnb .gnb_logo a{background-image:url("../../images/5gprobe/logo.png");}
+.error_area .error_head .logo{background: url("../../images/5gprobe/logo_dark.png") 4px 11px no-repeat;}
+.m_header .m_logo{background-image:url("../../images/5gprobe/logo_monitoring.png");}
+.node_wrap.type_01 .draw.type2{width:70%;}
+
+/* process manager */
+.manager .item.type_02 {height: calc(100% - 206px);}
+
+/* monitoring legend */
+.legend ul li:nth-of-type(5):before{background-color:#6687ff;}
+
+/* monitoring node-detail */
+.sect .summary .cell_02 {width: 57%;}
+.summary .resource dd{height:205px;}
+.summary .resource .value_gauge{top:125px;}
+.g1{top:3px;}
+.left_area.type_02 .left_row{height:calc(50% - 29px);}
+

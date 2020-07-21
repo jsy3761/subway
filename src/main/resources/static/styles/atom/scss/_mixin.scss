@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+@mixin scrollbar_type_01 {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track-piece {
+    background-color: transparent;
+  }
+  /*bar*/
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  /*corner*/
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  // /*resizer*/
+  // ::-webkit-resizer{
+  //   width: 16px;
+  //   height: 16px;
+  // }
+}
+
+@mixin box_style_01 {
+  background-color: #FFF;
+  -webkit-box-shadow: 0 1px 0 0 #dbdbdc;
+  box-shadow: 0 1px 0 0 #dbdbdc;
+}
+
+@mixin box_style_02 {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 0 0 #b2b4b9;
+  box-shadow: 0 1px 0 0 #b2b4b9;
+}
+
+@mixin box_style_03 {
+  background-color: #FFF;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #e8e8e8;
+}
+
+@mixin box_shadow_01 {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+@mixin font_type_01 {
+  font-family: 'segoe ui', 'Malgun Gothic', sans-serif;
+}
+@mixin btn_bdrs_01 {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+//btn gradation after
+@mixin gradient_after( $color , $alpha) { 
+  overflow:hidden;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: -moz-linear-gradient(top, rgba(255,255,255,0) 8%, rgba(255,255,255,0) 23%, rgba($color,$alpha) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(255,255,255,0) 8%,rgba(255,255,255,0) 23%,rgba($color,$alpha) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 8%,rgba(255,255,255,0) 23%,rgba($color,$alpha) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+}
+
+@mixin border_01 {
+  border: 1px solid #c4c8cc;
+}
+@mixin border_02 {
+  border: 1px solid #9da7b3;
+}
+
+$body_bg: #ededee;
+
+// gng color
+$color_gnb_bg: #292c33;
+$color_gnb_bg_active: #1d1f24;
+$color_gnb_font: #d0d3d9;
+$color_gnb_font_hover: #fff;
+$color_gnb_font_active: #00d495;
+
+
+$color_font_08: #222222; //form default font color
+$color_font_07: #292c33; //content
+$color_font_02: #303133; //gnb
+$color_font_01: #555555; //form type_01 color 
+$color_font_03: #74767a; //gnb, content
+$color_font_05: #9fa1a6; //gnb
+$color_font_04: #a0a4a8; //gnb, board
+$color_font_06: #dcdfe5; //gnb
+
+$color_hover_01: #eaebee; //gnb
+
+$color_hover: #303133; //board, form
+$color_active: #00c188; //common, form
+
+
+
+// btn type1 set
+$btn_type1_height: 32px;
+$btn_type1_line_height: 31px;
+$btn_type1_radius: 16px;
+$btn_type1_font_size: 14px;
+$btn_type1_bg: #646873;
+$btn_type1_color: #fff;
+$btn_type1_focus_bg: #4e5159;
+$btn_type1_active_bg: #292c33;
+
+
+// btn type1 primary
+$btn_type1_primary_bg: #00ad79;
+$btn_type1_primary_color: #fff;
+$btn_type1_primary_focus_bg: #009468;
+$btn_type1_primary_acitve_bg: #005e42;
+
+
+// btn type2 set
+$btn_type2_border: #aaacb2;
+$btn_type2_border_hover: #6c6e73;
+$btn_type2_border_active: #545659; 
+$btn_type2_color: #646873;
+$btn_type2_color_hover: #303133; 
+$btn_type2_color_active: #1d1d1f; 
+$btn_type2_bg: #fff;
+$btn_type2_active: #f0f1f2;
+
+
+// btn type2 primary
+$btn_type2_primary_border: #38ace1;
+$btn_type2_primary_border_hover: #2d88b3;
+$btn_type2_primary_border_active: #267599;
+$btn_type2_primary_border_dis: #c3e6f6;
+$btn_type2_primary_color: #0290d1;
+$btn_type2_primary_color_hover :#015880; 
+$btn_type2_primary_color_active :#014666; 
+$btn_type2_primary_color_dis :#b3ddf1;
+$btn_type2_primary_active :#edf4f7;
+
+
+// sprite img
+$icon_sprite: url("../../images/atom/icon_btn.png");
+$icon_sprite3: url("../../images/atom/icon_state.png");
+
+
+ // search box / type2  - form-
+$btn_search_bg: #737980;
+$btn_search_hover_bg: #55595e;
+$btn_search_active_bg: #292c33;
+$btn_search_border :#c4c8cc; 
+$btn_search_focus :#9fa2a6;
+$btn_search_active :#87898c; 
+$btn_adv_bg : #fafafa;
+$btn_adv_active_bg : #f0f0f0;

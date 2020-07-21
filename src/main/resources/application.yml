@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: local
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/subway?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: dbsl3761
+
+covid:
+  api:
+    url: http://swopenapi.seoul.go.kr/api/subway/454b4545686a737937357964426467/json/realtimeStationArrival/0/1000/
+
+server:
+  port: 7000

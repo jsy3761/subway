@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ntels.syjeon.subway.dao.SubwayMapper">
+
+    <select id="getStationName" parameterType="String" resultType="String">
+        SELECT statn_name FROM station
+        WHERE subway_id = #{subway_id}
+        ORDER BY id
+    </select>
+
+    <select id="getFnTstaTn" parameterType="String" resultType="String">
+        SELECT statn_name FROM station
+        WHERE statn_id = #{statn_id}
+    </select>
+
+
+</mapper>
