@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
     $(document).ready(function () {
       getLists();
       getStns();
-      getTimer();
+      time();
     });
 
     function getStns() {
@@ -70,22 +70,17 @@ pageEncoding="UTF-8"%>
         }
       })
     }
-    var time = 500;
-    function time() {
-      // var time = $('#timer').val();
-      
-      var min = time / 60;
-      var sec = time % 60;
-      $('#time').empty();
-      $('#time').append(min + '분 ' + sec + '초 후 도착');
-      time--;
-    }
-
-    function getTimer() {
-      setInterval(function () {
-        time();
-      }, 1000);
-    }
+var num = 500;
+function time(){
+  setInterval(function(){
+    $('#time').empty();
+    var sec = num % 60;
+    var min = Math.floor(num / 60);
+    $('#time').append(min + '분 '+ sec + '초 후');
+    num--;
+  },1000);
+}
+  
     function getPooling() {
       setInterval(function () {
         getStns();

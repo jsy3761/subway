@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @author syjeon@ntels.com
@@ -40,6 +41,12 @@ public class SubwayController {
     public String[] getStations(String subwayId){
         System.out.println("Ajax");
         return subwayService.getStnNames(subwayId);
+    }
+
+    @GetMapping(value = "/time.ajax")
+    @ResponseBody
+    public int getime(){
+        return 500;
     }
 
 
