@@ -25,40 +25,43 @@ public class SubwayServiceImpl {
     @Autowired
     private SubwayMapper subwayMapper;
 
-    public List<RealtimeArrivalList> upSubwayInfo(String stnName) {
+    public String[] getStnNames(String subwayId) {
+        return subwayMapper.getStationName(subwayId);
+    }
+
+    public List<RealtimeArrivalList> upSubwayInfo(String stnName, String subwayId) {
         Gson gson = new Gson();
         String json = httpUtil.apiCall(stnName);
         Map<String, String> hoseon = new Hoseon().getHoseonMap();
         List<RealtimeArrivalList> list = gson.fromJson(json, Subway.class).getRealtimeArrivalList();
+        list = list.stream().filter(r -> r.getSubwayId().equals(subwayId)).collect(Collectors.toList());
+        list = list.stream().filter(r -> r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("외선"))
+                .collect(Collectors.toList());
 
-        if (!stnName.equals("")) {
-            list = list.stream().filter(r -> r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("내선"))
-                    .collect(Collectors.toList());
-            list.forEach(r -> {
-                r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnTid()));
-                r.setStatnFid(subwayMapper.getFnTstaTn(r.getStatnFid()));
-                r.setSubwayId(hoseon.get(r.getSubwayId()));
-            });
-        }
+        list.forEach(r -> {
+            r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnTid()));
+            r.setStatnFid(subwayMapper.getFnTstaTn(r.getStatnFid()));
+            r.setSubwayId(hoseon.get(r.getSubwayId()));
+        });
+
         return list;
     }
 
-    public List<RealtimeArrivalList> dnSubwayInfo(String stnName) {
+    public List<RealtimeArrivalList> dnSubwayInfo(String stnName, String subwayId) {
         Gson gson = new Gson();
         String json = httpUtil.apiCall(stnName);
         Map<String, String> hoseon = new Hoseon().getHoseonMap();
         List<RealtimeArrivalList> list = gson.fromJson(json, Subway.class).getRealtimeArrivalList();
+        list = list.stream().filter(r -> r.getSubwayId().equals(subwayId)).collect(Collectors.toList());
+        list = list.stream().filter(r -> r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("내선"))
+                .collect(Collectors.toList());
 
-        if (!stnName.equals("")) {
-            list = list.stream().filter(r -> r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("외선"))
-                    .collect(Collectors.toList());
-            list.forEach(r -> {
-                String temp = r.getStatnTid();
-                r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnFid()));
-                r.setStatnFid(subwayMapper.getFnTstaTn(temp));
-                r.setSubwayId(hoseon.get(r.getSubwayId()));
-            });
-        }
+        list.forEach(r -> {
+            String temp = r.getStatnTid();
+            r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnFid()));
+            r.setStatnFid(subwayMapper.getFnTstaTn(temp));
+            r.setSubwayId(hoseon.get(r.getSubwayId()));
+        });
 
         return list;
     }

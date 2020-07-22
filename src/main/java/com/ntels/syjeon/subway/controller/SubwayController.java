@@ -20,9 +20,6 @@ import java.util.Map;
 public class SubwayController {
 
     @Autowired
-    private SubwayMapper subwayMapper;
-
-    @Autowired
     private SubwayServiceImpl subwayService;
 
     @GetMapping(value = "/")
@@ -34,15 +31,14 @@ public class SubwayController {
     @GetMapping(value = "/names.ajax")
     @ResponseBody
     public Map<String, String> hoseon(){
-        System.out.println("Ajax 호출");
         return new Hoseon().getHoseonMap();
     }
 
     @GetMapping(value = "/stnNames.ajax")
     @ResponseBody
     public String[] getStations(String subwayId){
-        System.out.println(subwayId);
-        return subwayMapper.getStationName(subwayId);
+        System.out.println("Ajax");
+        return subwayService.getStnNames(subwayId);
     }
 
 
@@ -60,8 +56,8 @@ public class SubwayController {
         ModelAndView mv = new ModelAndView("dashboard");
         mv.addObject("subId", subwayId);
         mv.addObject("hoseon",new Hoseon().getHoseonMap().get(subwayId));
-        mv.addObject("subwayUp",subwayService.upSubwayInfo(stnName));
-        mv.addObject("subwayDn",subwayService.dnSubwayInfo(stnName));
+        mv.addObject("subwayUp",subwayService.upSubwayInfo(stnName,subwayId));
+        mv.addObject("subwayDn",subwayService.dnSubwayInfo(stnName,subwayId));
 
         return mv;
     }
