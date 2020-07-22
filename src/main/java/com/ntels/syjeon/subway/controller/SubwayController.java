@@ -4,6 +4,7 @@ import com.ntels.syjeon.subway.service.SubwayServiceImpl;
 import com.ntels.syjeon.subway.dao.SubwayMapper;
 import com.ntels.syjeon.subway.model.Hoseon;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
