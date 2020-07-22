@@ -27,7 +27,7 @@ public class SubwayController {
 
     @GetMapping(value = "/")
     public ModelAndView index(){
-        ModelAndView mv = new ModelAndView("covid");
+        ModelAndView mv = new ModelAndView("dashboard");
         return mv;
     }
 
@@ -48,7 +48,7 @@ public class SubwayController {
 
     @GetMapping(value = "/{hoseon}")
     public ModelAndView view(@PathVariable("hoseon") String subwayId){
-        ModelAndView mv = new ModelAndView("view");
+        ModelAndView mv = new ModelAndView("dashboard");
         mv.addObject("subId", subwayId);
         mv.addObject("hoseon",new Hoseon().getHoseonMap().get(subwayId));
         return mv;
@@ -57,7 +57,7 @@ public class SubwayController {
     @GetMapping(value = "/{hoseon}/{stnName}")
     public ModelAndView view(@PathVariable("hoseon") String subwayId,
                              @PathVariable("stnName") String stnName){
-        ModelAndView mv = new ModelAndView("view");
+        ModelAndView mv = new ModelAndView("dashboard");
         mv.addObject("subId", subwayId);
         mv.addObject("hoseon",new Hoseon().getHoseonMap().get(subwayId));
         mv.addObject("subwayUp",subwayService.upSubwayInfo(stnName));

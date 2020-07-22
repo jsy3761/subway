@@ -13,7 +13,7 @@ spring:
 
 covid:
   api:
-    url: http://swopenapi.seoul.go.kr/api/subway/454b4545686a737937357964426467/json/realtimeStationArrival/0/1000/
+    url: http://swopenapi.seoul.go.kr/api/subway/454b4545686a737937357964426467/json/realtimeStationArrival/0/50/
 
 server:
   port: 7000
