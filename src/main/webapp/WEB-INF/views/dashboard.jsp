@@ -73,7 +73,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <input type="hidden" id="sub" value="${subId}">
-<input type="hidden" id="stName" value="${subwayUp[0].statnNm}">
+
 
 
 <body class="dark-edition">

@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
     $(document).ready(function () {
       getLists();
       getStns();
-      
+
       getdata();
       pulling();
     });
@@ -161,7 +161,7 @@ pageEncoding="UTF-8"%>
 </head>
 
 <input type="hidden" id="sub" value="${subId}">
-<input type="hidden" id="stName" value="${stnName}">
+<input type="hidden" id="stName" value="${stnName[1]}">
 
 <body class="dark-edition">
   <div class="wrapper ">
@@ -256,7 +256,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="prev">
-                 
+                    <a href="../${subId}/${stnName[0]}">${stnName[0]}역</a>
                   </h2>
                 </div>
               </div>
@@ -265,7 +265,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="on">
-                    <a href="../${subId}/${stnName}">${stnName}역</a>
+                    <a href="../${subId}/${stnName[1]}">${stnName[1]}역</a>
                   </h2>
                 </div>
               </div>
@@ -274,7 +274,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="next">
-
+                    <a href="../${subId}/${stnName[2]}">${stnName[2]}역</a>
                   </h2>
                 </div>
               </div>

@@ -59,7 +59,7 @@ public class SubwayController {
                                  @PathVariable("stnName") String stnName){
         ModelAndView mv = new ModelAndView("view");
         mv.addObject("subId", subwayId);
-        mv.addObject("stnName", stnName);
+        mv.addObject("stnName", subwayService.getStnNames(subwayId,stnName));
         return mv;
     }
 

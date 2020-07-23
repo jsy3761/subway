@@ -30,6 +30,19 @@ public class SubwayServiceImpl {
         return subwayMapper.getStationName(subwayId);
     }
 
+    public String[] getStnNames(String subwayId,String stnName) {
+        String[] list = subwayMapper.getStationName(subwayId);
+        String[] result = new String[3];
+        for (int i = 0; i < list.length; i++) {
+            if(list[i].equals(stnName)){
+                result[0] = list[i-1];
+                result[1] = list[i];
+                result[2] = list[i+1];
+            }
+        }
+        return result;
+    }
+
 
     public Map<String ,List<RealtimeArrivalList>> SubwayInfo(String stnName, String subwayId) {
         Gson gson = new Gson();
