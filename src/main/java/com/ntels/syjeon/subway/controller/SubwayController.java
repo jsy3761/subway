@@ -47,24 +47,27 @@ public class SubwayController {
         mv.addObject("subId", subwayId);
         return mv;
     }
+    @GetMapping(value = "/data.ajax")
+    @ResponseBody
+    public Map<String, List<RealtimeArrivalList>> data(String subwayId,String stnName){
+        return subwayService.SubwayInfo(stnName,subwayId);
+    }
+
+
 
     @GetMapping(value = "/{hoseon}/{stnName}")
     public ModelAndView viewInfo(@PathVariable("hoseon") String subwayId,
                                  @PathVariable("stnName") String stnName){
-        ModelAndView mv = new ModelAndView("dashboard");
-
-        Map<String, List<RealtimeArrivalList>> apiResult = subwayService.SubwayInfo(stnName,subwayId);
+        ModelAndView mv = new ModelAndView("view");
+        subwayService.SubwayInfo(stnName,subwayId);
 
         mv.addObject("subId", subwayId);
-        try {
-            mv.addObject("subwayUp",apiResult.get("up"));
-            mv.addObject("subwayDn",apiResult.get("dn"));
-        }catch (Exception e){
-            mv.setViewName("documentation");
-        }
+        mv.addObject("stnName", stnName);
 
         return mv;
     }
+
+
 
 
 }
