@@ -31,10 +31,10 @@ public class HttpUtil {
 
     /**
      * 공공 Api Service를 호출하여 full JsonString 형태로 리턴
+     *
      * @return full JsonString
      */
     public String apiCall(String stationName) {
-
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
@@ -43,12 +43,11 @@ public class HttpUtil {
                 .append(serviceUrl)
                 .append(stationName)
                 .toString();
-
         logger.debug("Request Url : {}", url);
-        System.out.println(url);
+
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
         String jsonString = responseEntity.getBody();
-
         return jsonString;
+
     }
 }

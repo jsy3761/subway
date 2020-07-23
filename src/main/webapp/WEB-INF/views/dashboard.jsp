@@ -27,8 +27,10 @@ pageEncoding="UTF-8"%>
     $(document).ready(function () {
       getLists();
       getStns();
-      time();
+
+      
     });
+   
 
     function getStns() {
       var subId = $('#sub').val();
@@ -48,7 +50,6 @@ pageEncoding="UTF-8"%>
         }
       })
     }
-
     function getLists() {
       $.ajax({
         type: "GET",
@@ -70,25 +71,19 @@ pageEncoding="UTF-8"%>
         }
       })
     }
-var num = 500;
-function time(){
-  setInterval(function(){
-    $('#time').empty();
-    var sec = num % 60;
-    var min = Math.floor(num / 60);
-    $('#time').append(min + '분 '+ sec + '초 후');
-    num--;
-  },1000);
-}
-  
-    function getPooling() {
-      setInterval(function () {
-        getStns();
-      }, 5000);
-    }
   </script>
 </head>
 <input type="hidden" id="sub" value="${subId}">
+<input type="hidden" id="stName" value="${subwayUp[0].statnNm}">
+<input type="hidden" id="uptln1" value="${subwayUp[0].trainLineNm}">
+<input type="hidden" id="upbn1" value="${subwayUp[0].btrainNo}">
+<input type="hidden" id="upmsg1" value="${subwayUp[0].arvlMsg2}">
+<input type="hidden" id="uptime1" value="${subwayUp[0].barvlDt}">
+<input type="hidden" id="uptime2" value="${subwayUp[1].barvlDt}">
+<input type="hidden" id="dntime1" value="${subwayDn[0].barvlDt}">
+<input type="hidden" id="dnmsg1" value="${subwayDn[0].arvlMsg2}">
+<input type="hidden" id="dntime2" value="${subwayDn[1].barvlDt}">
+
 
 <body class="dark-edition">
   <div class="wrapper ">
@@ -182,7 +177,7 @@ function time(){
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
-                  <h2 style="text-align: center;" class="card-title mt-0">
+                  <h2 style="text-align: center;" class="card-title mt-0" id="prev">
                     <a href="../${subId}/${subwayUp[0].statnFid}">${subwayUp[0].statnFid}역</a>
                   </h2>
                 </div>
@@ -191,7 +186,7 @@ function time(){
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
-                  <h2 style="text-align: center;" class="card-title mt-0">
+                  <h2 style="text-align: center;" class="card-title mt-0" id="on">
                     <a href="../${subId}/${subwayUp[0].statnNm}">${subwayUp[0].statnNm}역</a>
                   </h2>
                 </div>
@@ -200,7 +195,7 @@ function time(){
             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
-                  <h2 style="text-align: center;" class="card-title mt-0">
+                  <h2 style="text-align: center;" class="card-title mt-0" id="next">
                     <a href="../${subId}/${subwayUp[0].statnTid}">${subwayUp[0].statnTid}역</a>
                   </h2>
                 </div>
@@ -219,13 +214,13 @@ function time(){
                   <p class="card-category">
                     <h2 style="text-align: left; color: #ffffff;" class="card-title">이번 열차</h2>
                   </p><br>
-                  <h2 style="text-align: center; color: #ffffff;" class="card-title">${subwayUp[0].trainLineNm}
+                  <h2 style="text-align: center; color: #ffffff;" class="card-title"id="uptrainLineNm1">
                   </h2><br>
-                  <h1 style="text-align: center; color: #ffffff;" class="card-title">${subwayUp[0].btrainNo}
+                  <h1 style="text-align: center; color: #ffffff;" class="card-title" id="upbtrainNo1">
                   </h1>
-                  <h2 style="text-align: right; color: #ffffff;" class="card-title" id="time">${subwayUp[0].arvlMsg2}
+                  <h2 style="text-align: right; color: #ffffff;" class="card-title" id="uparvlMsg1">
                   </h2><br>
-                  <input type="hidden" id="timeer" value="500">
+
                 </div>
               </div>
             </div>
@@ -243,7 +238,7 @@ function time(){
                   </h2><br>
                   <h1 style="text-align: center; color: #ffffff;" class="card-title">${subwayDn[0].btrainNo}
                   </h1>
-                  <h2 style="text-align: right; color: #ffffff;" class="card-title">${subwayDn[0].arvlMsg2}
+                  <h2 style="text-align: right; color: #ffffff;" class="card-title" id="dninfo1">${subwayDn[0].arvlMsg2}
                   </h2><br>
 
                 </div>
@@ -266,7 +261,7 @@ function time(){
                   <h3 style="text-align: center; color: #ffffff;" class="card-title">${subwayUp[1].trainLineNm}</h3>
                   <h2 style="text-align: center; color: #ffffff;" class="card-title">${subwayUp[1].btrainNo}
                   </h2>
-                  <h3 style="text-align: right; color: #ffffff;" class="card-title">${subwayUp[1].arvlMsg2}
+                  <h3 style="text-align: right; color: #ffffff;" class="card-title" id="upinfo2">${subwayUp[1].arvlMsg2}
                   </h3><br>
 
                 </div>
@@ -285,7 +280,7 @@ function time(){
                   <h3 style="text-align: center; color: #ffffff;" class="card-title">${subwayDn[1].trainLineNm}</h3>
                   <h2 style="text-align: center; color: #ffffff;" class="card-title">${subwayDn[1].btrainNo}
                   </h2>
-                  <h3 style="text-align: right; color: #ffffff;" class="card-title">${subwayDn[1].arvlMsg2}
+                  <h3 style="text-align: right; color: #ffffff;" class="card-title" id="dninfo2">${subwayDn[1].arvlMsg2}
                   </h3><br>
 
                 </div>
