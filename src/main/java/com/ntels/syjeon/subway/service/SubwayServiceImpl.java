@@ -26,11 +26,11 @@ public class SubwayServiceImpl {
     @Autowired
     private SubwayMapper subwayMapper;
 
-    public String[] getStnNames(String subwayId) {
+    public String[] getStationList(String subwayId) {
         return subwayMapper.getStationName(subwayId);
     }
 
-    public String[] getStnNames(String subwayId,String stnName) {
+    public String[] getFnTStation(String subwayId,String stnName) {
         String[] list = subwayMapper.getStationName(subwayId);
         String[] result = new String[3];
         for (int i = 0; i < list.length; i++) {
@@ -46,31 +46,22 @@ public class SubwayServiceImpl {
 
     public Map<String ,List<RealtimeArrivalList>> SubwayInfo(String stnName, String subwayId) {
         Gson gson = new Gson();
-        String json = httpUtil.apiCall(stnName);
-        Map<String, String> hoseon = new Hoseon().getHoseonMap();
-        Map<String ,List<RealtimeArrivalList>> retrunMap = new HashMap<>();
-        List<RealtimeArrivalList> apiResult = gson.fromJson(json, Subway.class).getRealtimeArrivalList();
+        Map<String, List<RealtimeArrivalList>> retrunMap = new HashMap<>();
 
-        List<RealtimeArrivalList> upList = apiResult.stream().filter(r -> r.getSubwayId().equals(subwayId)).collect(Collectors.toList());
-        upList = upList.stream().filter(r -> r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("외선"))
+        List<RealtimeArrivalList> apiResult =
+                gson.fromJson(httpUtil.apiCall(stnName), Subway.class).getRealtimeArrivalList();
+
+        List<RealtimeArrivalList> upList = apiResult.stream()
+                .filter(r -> r.getSubwayId().equals(subwayId))
+                .filter(r -> r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("외선"))
                 .collect(Collectors.toList());
-        upList.forEach(r -> {
-            r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnTid()));
-            r.setStatnFid(subwayMapper.getFnTstaTn(r.getStatnFid()));
-            r.setSubwayId(hoseon.get(r.getSubwayId()));
-        });
+
+        List<RealtimeArrivalList> dnList = apiResult.stream()
+                .filter(r -> r.getSubwayId().equals(subwayId))
+                .filter(r -> r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("내선"))
+                .collect(Collectors.toList());
 
         retrunMap.put("up",upList);
-
-        List<RealtimeArrivalList> dnList = apiResult.stream().filter(r -> r.getSubwayId().equals(subwayId)).collect(Collectors.toList());
-        dnList = dnList.stream().filter(r -> r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("내선"))
-                .collect(Collectors.toList());
-        dnList.forEach(r -> {
-            r.setStatnTid(subwayMapper.getFnTstaTn(r.getStatnTid()));
-            r.setStatnFid(subwayMapper.getFnTstaTn(r.getStatnFid()));
-            r.setSubwayId(hoseon.get(r.getSubwayId()));
-        });
-
         retrunMap.put("dn",dnList);
 
         return retrunMap;

@@ -38,7 +38,7 @@ public class SubwayController {
     @GetMapping(value = "/stnNames.ajax")
     @ResponseBody
     public String[] getStations(String subwayId){
-        return subwayService.getStnNames(subwayId);
+        return subwayService.getStationList(subwayId);
     }
 
     @GetMapping(value = "/data.ajax")
@@ -59,7 +59,7 @@ public class SubwayController {
                                  @PathVariable("stnName") String stnName){
         ModelAndView mv = new ModelAndView("view");
         mv.addObject("subId", subwayId);
-        mv.addObject("stnName", subwayService.getStnNames(subwayId,stnName));
+        mv.addObject("stnName", subwayService.getFnTStation(subwayId,stnName));
         return mv;
     }
 
