@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
  * @author syjeon@ntels.com
  */
 @Service
-public class SubwayServiceImpl {
+public class SubwayServiceImpl implements SubwayService{
 
     @Autowired
     private HttpUtil httpUtil;
@@ -26,10 +26,12 @@ public class SubwayServiceImpl {
     @Autowired
     private SubwayMapper subwayMapper;
 
+    @Override
     public String[] getStationList(String subwayId) {
         return subwayMapper.getStationName(subwayId);
     }
 
+    @Override
     public String[] getFnTStation(String subwayId,String stnName) {
         String[] list = subwayMapper.getStationName(subwayId);
         String[] result = new String[3];
@@ -43,7 +45,7 @@ public class SubwayServiceImpl {
         return result;
     }
 
-
+    @Override
     public Map<String ,List<RealtimeArrivalList>> SubwayInfo(String stnName, String subwayId) {
         Gson gson = new Gson();
         Map<String, List<RealtimeArrivalList>> retrunMap = new HashMap<>();
