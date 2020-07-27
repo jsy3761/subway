@@ -1,8 +1,7 @@
 package com.ntels.syjeon.subway.controller;
 
 import com.ntels.syjeon.subway.model.RealtimeArrivalList;
-import com.ntels.syjeon.subway.service.SubwayServiceImpl;
-import com.ntels.syjeon.subway.model.Hoseon;
+import com.ntels.syjeon.subway.service.SubwayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +19,7 @@ import java.util.Map;
 public class SubwayController {
 
     @Autowired
-    private SubwayServiceImpl subwayService;
+    private SubwayService subwayService;
 
     @GetMapping(value = "/")
     public String index(){
@@ -38,6 +37,7 @@ public class SubwayController {
     public String[] getStations(String subwayId){
         return subwayService.getStationList(subwayId);
     }
+
     @ResponseBody
     @GetMapping(value = "/data.ajax")
     public Map<String, List<RealtimeArrivalList>> data(String subwayId,String stnName){

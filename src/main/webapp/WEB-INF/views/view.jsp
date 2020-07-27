@@ -74,6 +74,9 @@ pageEncoding="UTF-8"%>
       }) 
     }
     function getLists() {
+      var url = location.href.split('/')[3];
+      var decode = decodeURI(url);
+      var id;
       $.ajax({
         type: "GET",
         url: "/names.ajax",
@@ -81,7 +84,7 @@ pageEncoding="UTF-8"%>
           $('#hoseon').empty();
           for (var i = 0; i < Object.keys(result).length; i++) {
             $('#hoseon').append(
-              '<li>' +
+              '<li id="'+ Object.keys(result)[i] +'">' +
               '<a class="nav-link" href="/' + Object.keys(result)[i] + '">' +
               '<i class="material-icons">train</i>' +
               '<p><h4>' +
@@ -90,7 +93,11 @@ pageEncoding="UTF-8"%>
               '</a>' +
               '</li>'
             )  
+            if(decode == Object.keys(result)[i]){
+              id = Object.keys(result)[i];
+            }
           }
+          $('#'+id).attr('class','active');
         }
       })
     }
