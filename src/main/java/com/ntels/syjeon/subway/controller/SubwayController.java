@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
-
-
 /**
  * @author syjeon@ntels.com
  */
@@ -25,24 +23,23 @@ public class SubwayController {
     private SubwayServiceImpl subwayService;
 
     @GetMapping(value = "/")
-    public String  index(){
+    public String index(){
         return "dashboard";
     }
 
-    @GetMapping(value = "/names.ajax")
     @ResponseBody
+    @GetMapping(value = "/names.ajax")
     public Map<String, String> hoseon(){
-        return new Hoseon().getHoseonMap();
+        return subwayService.getHoseons();
     }
 
-    @GetMapping(value = "/stnNames.ajax")
     @ResponseBody
+    @GetMapping(value = "/stnNames.ajax")
     public String[] getStations(String subwayId){
         return subwayService.getStationList(subwayId);
     }
-
-    @GetMapping(value = "/data.ajax")
     @ResponseBody
+    @GetMapping(value = "/data.ajax")
     public Map<String, List<RealtimeArrivalList>> data(String subwayId,String stnName){
         return subwayService.SubwayInfo(stnName,subwayId);
     }
@@ -59,11 +56,8 @@ public class SubwayController {
                                  @PathVariable("stnName") String stnName){
         ModelAndView mv = new ModelAndView("view");
         mv.addObject("subId", subwayId);
-        mv.addObject("stnName", subwayService.getFnTStation(subwayId,stnName));
+        mv.addObject("stnName", stnName);
         return mv;
     }
-
-
-
 
 }

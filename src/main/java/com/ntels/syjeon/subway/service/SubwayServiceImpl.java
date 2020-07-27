@@ -9,6 +9,7 @@ import com.ntels.syjeon.subway.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,22 +28,13 @@ public class SubwayServiceImpl implements SubwayService{
     private SubwayMapper subwayMapper;
 
     @Override
-    public String[] getStationList(String subwayId) {
-        return subwayMapper.getStationName(subwayId);
+    public Map<String, String> getHoseons() {
+        return new Hoseon().getHoseonMap();
     }
 
     @Override
-    public String[] getFnTStation(String subwayId,String stnName) {
-        String[] list = subwayMapper.getStationName(subwayId);
-        String[] result = new String[3];
-        for (int i = 0; i < list.length; i++) {
-            if(list[i].equals(stnName)){
-                result[0] = list[i-1];
-                result[1] = list[i];
-                result[2] = list[i+1];
-            }
-        }
-        return result;
+    public String[] getStationList(String subwayId) {
+        return subwayMapper.getStationName(subwayId);
     }
 
     @Override
@@ -54,14 +46,14 @@ public class SubwayServiceImpl implements SubwayService{
                 gson.fromJson(httpUtil.apiCall(stnName), Subway.class).getRealtimeArrivalList();
 
         List<RealtimeArrivalList> upList = apiResult.stream()
-                .filter(r -> r.getSubwayId().equals(subwayId))
-                .filter(r -> r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("외선"))
-                .collect(Collectors.toList());
+                .filter(r -> r.getSubwayId().equals(subwayId)
+                        && (r.getUpdnLine().equals("상행") || r.getUpdnLine().equals("외선"))
+                ).collect(Collectors.toList());
 
         List<RealtimeArrivalList> dnList = apiResult.stream()
-                .filter(r -> r.getSubwayId().equals(subwayId))
-                .filter(r -> r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("내선"))
-                .collect(Collectors.toList());
+                .filter(r -> r.getSubwayId().equals(subwayId)
+                && (r.getUpdnLine().equals("하행") || r.getUpdnLine().equals("내선"))
+                ).collect(Collectors.toList());
 
         retrunMap.put("up",upList);
         retrunMap.put("dn",dnList);

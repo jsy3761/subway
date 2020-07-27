@@ -11,10 +11,4 @@
         ORDER BY id
     </select>
 
-    <select id="getFnTstaTn" parameterType="String" resultType="String">
-        SELECT statn_name FROM station
-        WHERE statn_id = #{statn_id}
-    </select>
-
-
 </mapper>

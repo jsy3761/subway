@@ -10,5 +10,4 @@ public interface SubwayMapper {
 
     String[] getStationName(String subwayId);
 
-    String getFnTstaTn(String statn_id);
 }

@@ -27,34 +27,57 @@ pageEncoding="UTF-8"%>
     $(document).ready(function () {
       getLists();
       getStns();
-
       getdata();
+      
       pulling();
     });
    
     function getStns() {
       var subId = $('#sub').val();
+      var stnName = $('#stName').val();
+      var preStation;
+      var station;
+      var nextStation;
       $.ajax({
         type: "GET",
         url: "/stnNames.ajax",
         data: { subwayId: subId },
         success: function (result) {
           $('#stn').empty();
+          $('#prev').empty();
+          $('#on').empty();
+          $('#next').empty();
           for (var i = 0; i < result.length; i++) {
             $('#stn').append(
               '<a href="../' + subId + '/' + result[i] + '" class="btn btn-primary btn-round">' +
               '<h4>' + result[i] + '</h4>' +
               '</a>'
             )
-          }
+            if(stnName == result[i]){
+              station = result[i]; 
+              if(i == 0){
+                preStation = "X";
+                nextStation = result[i+1];
+              }else if(i == result.length-1){
+                preStation = result[i-1];
+                nextStation = "X";
+              }else{
+                preStation = result[i-1];
+                nextStation = result[i+1];
+              }
+            }
+          } 
+          $('#prev').append('<a href="../${subId}/'+preStation+'">'+preStation+'역</a>');
+          $('#on').append('<a href="../${subId}/'+station+'">'+station+'역</a>');
+          $('#next').append('<a href="../${subId}/'+nextStation+'">'+nextStation+'역</a>');
         }
-      })
+      }) 
     }
     function getLists() {
       $.ajax({
         type: "GET",
         url: "/names.ajax",
-        success: function (result) {
+        success: function (result) {  
           $('#hoseon').empty();
           for (var i = 0; i < Object.keys(result).length; i++) {
             $('#hoseon').append(
@@ -66,7 +89,7 @@ pageEncoding="UTF-8"%>
               '</h4></p>' +
               '</a>' +
               '</li>'
-            )
+            )  
           }
         }
       })
@@ -137,9 +160,7 @@ pageEncoding="UTF-8"%>
             $('#dnmsg2').append(time(dnlist2.barvlDt));
           }else{
             $('#dnmsg2').append(dnlist2.arvlMsg2);
-          }
-
-   
+          }   
         }
       })
     }
@@ -156,12 +177,11 @@ pageEncoding="UTF-8"%>
       },30000);
     }
 
-
   </script>
 </head>
 
 <input type="hidden" id="sub" value="${subId}">
-<input type="hidden" id="stName" value="${stnName[1]}">
+<input type="hidden" id="stName"value="${stnName}" >
 
 <body class="dark-edition">
   <div class="wrapper ">
@@ -256,7 +276,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="prev">
-                    <a href="../${subId}/${stnName[0]}">${stnName[0]}역</a>
+                    
                   </h2>
                 </div>
               </div>
@@ -265,7 +285,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="on">
-                    <a href="../${subId}/${stnName[1]}">${stnName[1]}역</a>
+                    
                   </h2>
                 </div>
               </div>
@@ -274,7 +294,7 @@ pageEncoding="UTF-8"%>
               <div class="card card-plain">
                 <div class="card-header card-header-primary">
                   <h2 style="text-align: center;" class="card-title mt-0" id="next">
-                    <a href="../${subId}/${stnName[2]}">${stnName[2]}역</a>
+                    
                   </h2>
                 </div>
               </div>

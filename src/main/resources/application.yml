@@ -16,4 +16,4 @@ covid:
     url: http://swopenapi.seoul.go.kr/api/subway/6173676e6e6a737934345547666a6f/json/realtimeStationArrival/0/12/
 
 server:
-  port: 7000
+  port: 8000

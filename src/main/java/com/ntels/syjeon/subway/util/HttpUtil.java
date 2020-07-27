@@ -38,6 +38,7 @@ public class HttpUtil {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
+        logger.debug("Params : {}", stationName);
 
         String url = new StringBuilder()
                 .append(serviceUrl)
