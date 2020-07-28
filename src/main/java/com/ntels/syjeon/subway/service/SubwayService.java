@@ -1,6 +1,6 @@
 package com.ntels.syjeon.subway.service;
 
-import com.ntels.syjeon.subway.model.RealtimeArrivalList;
+import com.ntels.syjeon.subway.model.api.RealtimeArrivalList;
 import java.util.List;
 import java.util.Map;
 

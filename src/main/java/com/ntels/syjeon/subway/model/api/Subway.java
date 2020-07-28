@@ -1,4 +1,4 @@
-package com.ntels.syjeon.subway.model;
+package com.ntels.syjeon.subway.model.api;
 
 import java.util.List;
 

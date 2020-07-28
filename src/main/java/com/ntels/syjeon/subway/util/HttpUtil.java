@@ -51,4 +51,15 @@ public class HttpUtil {
         return jsonString;
 
     }
+
+    public String get(String url){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders httpHeaders = new HttpHeaders();
+        HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
+        String jsonString = responseEntity.getBody();
+
+        return jsonString;
+    }
 }

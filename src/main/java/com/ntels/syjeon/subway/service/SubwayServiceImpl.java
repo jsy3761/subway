@@ -3,13 +3,12 @@ package com.ntels.syjeon.subway.service;
 import com.google.gson.Gson;
 import com.ntels.syjeon.subway.dao.SubwayMapper;
 import com.ntels.syjeon.subway.model.Hoseon;
-import com.ntels.syjeon.subway.model.RealtimeArrivalList;
-import com.ntels.syjeon.subway.model.Subway;
+import com.ntels.syjeon.subway.model.api.RealtimeArrivalList;
+import com.ntels.syjeon.subway.model.api.Subway;
 import com.ntels.syjeon.subway.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.ntels.syjeon.subway.model;
+package com.ntels.syjeon.subway.model.api;
 
 /**
  * @author syjeon@ntels.com

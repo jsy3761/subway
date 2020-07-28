@@ -1,6 +1,6 @@
 package com.ntels.syjeon.subway.controller;
 
-import com.ntels.syjeon.subway.model.RealtimeArrivalList;
+import com.ntels.syjeon.subway.model.api.RealtimeArrivalList;
 import com.ntels.syjeon.subway.service.SubwayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,5 +1,6 @@
 package com.ntels.syjeon.subway.model;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,19 @@ import java.util.Map;
  * @author syjeon@ntels.com
  */
 public class Hoseon {
+//    private Map<String, String> hoseons;
+//
+//    public Hoseon(Map<String, String> hoseons){
+//        this.hoseons = new HashMap<>(hoseons);
+//    }
+//
+//    public Map<String, String> getHoseons(){
+//        return Collections.unmodifiableMap(hoseons);
+//    }
+
+
+
+
     private Map<String,String> hoseonMap = new HashMap<>();
     public Hoseon(){
         hoseonMap.put("1001","1호선");
