@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * Http Util
- *
+ * !공통 모듈화 필요
  * @author syjeon@ntels.com
  */
 @Component
@@ -31,7 +31,7 @@ public class HttpUtil {
 
     /**
      * 공공 Api Service를 호출하여 full JsonString 형태로 리턴
-     *
+     * 
      * @return full JsonString
      */
     public String apiCall(String stationName) {
@@ -51,15 +51,5 @@ public class HttpUtil {
         return jsonString;
 
     }
-
-    public String get(String url){
-        RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders httpHeaders = new HttpHeaders();
-        HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
-
-        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
-        String jsonString = responseEntity.getBody();
-
-        return jsonString;
-    }
+    
 }

@@ -1,6 +1,7 @@
 package com.ntels.syjeon.subway.model.api;
 
 /**
+ * Json 파싱모델 : 에러메시지
  * @author syjeon@ntels.com
  */
 public class ErrorMessage {

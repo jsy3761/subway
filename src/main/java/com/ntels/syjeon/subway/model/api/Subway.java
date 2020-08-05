@@ -3,6 +3,7 @@ package com.ntels.syjeon.subway.model.api;
 import java.util.List;
 
 /**
+ * Json 파싱모델 Root
  * @author syjeon@ntels.com
  */
 public class Subway {
@@ -16,6 +17,7 @@ public class Subway {
     public ErrorMessage getErrorMessage(){
         return this.errorMessage;
     }
+
     public void setRealtimeArrivalList(List<RealtimeArrivalList> realtimeArrivalList){
         this.realtimeArrivalList = realtimeArrivalList;
     }

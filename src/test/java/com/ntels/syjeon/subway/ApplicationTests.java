@@ -1,13 +1,17 @@
 package com.ntels.syjeon.subway;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+
+import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 class ApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    private void gerr(){
+
+    }
 
 }

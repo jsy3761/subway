@@ -1,6 +1,7 @@
 package com.ntels.syjeon.subway.model.api;
 
 /**
+ * Json 파싱모델 : 지하철 도착정보
  * @author syjeon@ntels.com
  */
 public class RealtimeArrivalList {
