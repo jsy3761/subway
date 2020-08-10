@@ -31,13 +31,13 @@ public class HttpUtil {
 
     /**
      * 공공 Api Service를 호출하여 full JsonString 형태로 리턴
-     * 
      * @return full JsonString
      */
     public String apiCall(String stationName) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();
         HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
+
         logger.debug("Params : {}", stationName);
 
         String url = new StringBuilder()
@@ -49,7 +49,6 @@ public class HttpUtil {
         ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
         String jsonString = responseEntity.getBody();
         return jsonString;
-
     }
     
 }

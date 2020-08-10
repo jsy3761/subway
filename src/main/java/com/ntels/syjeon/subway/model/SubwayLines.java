@@ -15,7 +15,7 @@ public class SubwayLines {
     private List<SubwayLine> subwayLines;
 
     /**
-     * 생성자 주입
+     * 생성자
      * @param subwayLines
      */
     public SubwayLines(List<SubwayLine> subwayLines){
